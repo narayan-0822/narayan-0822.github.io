@@ -111,19 +111,28 @@
 					</div>
 				</section>
 
+
+				<div id="projectFilters">
+					<button class="filter-button" data-filter="all">All</button>
+					<button class="filter-button" data-filter="python">Python</button>
+					<button class="filter-button" data-filter="web">Web Development</button>
+					<button class="filter-button" data-filter="android">Android</button>
+				</div>
+
 				<!-- Section -->
 				<section id="projectsSection">
 					<header class="major">
 						<h2>My Projects</h2>
 					</header>
 					<div class="posts">
-						<article>
+						<article data-category="python">
 							<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
 							<h3>CLIENT SERVER CHAT APPLICATION</h3>
 							<p>
 								This project showcases a Python-based client-server application that implements a basic authentication system, 
 								allowing users to sign up and log in. Utilizing socket programming and multi-threading, the application supports
 								concurrent client connections, facilitating real-time data transmission and processing. 
+								<br>
 								<br>
 								Through this project, I upgraded my skills in network programming, learned to manage client-server communications, and explored the
 								basics of user authentication and security considerations. Although the initial version stores credentials 
@@ -134,7 +143,7 @@
 								<li><a href="https://github.com/narayan-0822/Client-Server-Chat" class="button">Code</a></li>
 							</ul>
 						</article>	
-						<article>
+						<article data-category="web">
 							<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
 							<h3>ONLINE STORE WEB APPLICATION</h3>
 							<p>Created a web store using HTML, CSS, JavaScript, MySQL, and PHP, with features such as user registration, authentication, 
@@ -185,6 +194,35 @@
 					</div>
 				</section>
 
+				<script>
+					// JavaScript for filter functionality
+					$(document).ready(function(){
+						// Filter button click event
+						$(".filter-button").click(function(){
+							var value = $(this).attr('data-filter');
+				
+							// Show all projects if 'All' is selected
+							if(value == "all") {
+								$('.posts > article').show('1000');
+							} else {
+								// Hide all projects except those with selected category
+								$(".posts > article").each(function() {
+									var categories = $(this).data('category').split(' ');
+									if ($.inArray(value, categories) === -1) {
+										$(this).hide('3000');
+									} else {
+										$(this).show('3000');
+									}
+								});
+							}
+				
+							// Add active class to the current button
+							$(".filter-button").removeClass("active");
+							$(this).addClass("active");
+						});
+					});
+				</script>
+
 				<!-- Section -->
 				<section id="experienceSection">
 					<header class="major">
@@ -223,7 +261,7 @@
 					<br>
 					<h3>Bachelors in Technology</h3>
 					<p><strong>Major: Information Technology</strong></p> 
-					<p><strong>School: IPU</strong></p> 
+					<p><strong>School: IP University</strong></p> 
 					<br>
 					
 				</section>
